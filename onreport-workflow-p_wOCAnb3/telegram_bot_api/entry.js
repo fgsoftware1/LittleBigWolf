@@ -28,7 +28,7 @@ export default defineComponent({
     if (commandMessage) {
       const mention = commandMessage.message.text.split(" ")[1];
       if (mention.startsWith("@")) {
-        await axios($, {
+        const reportResponse = await axios($, {
           method: "POST",
           url: `https://api.twitter.com/1.1/users/report_spam.json`,
           headers: {
@@ -38,6 +38,17 @@ export default defineComponent({
             screen_name: mention.slice(1),
           },
         });
+
+        if (reportResponse) {
+          await axios($, {
+            method: "POST",
+            url: `https://api.telegram.org/bot${this.telegram_bot_api.$auth.token}/sendMessage`,
+            data: {
+              chat_id: commandMessage.message.chat.id,
+              text: `Reported @${mention.slice(1)} to Twitter.`,
+            },
+          });
+        }
       }
     }
   },
