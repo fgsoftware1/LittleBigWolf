@@ -1,0 +1,18 @@
+schema: workflow/2022.04
+name: OnReport workflow
+settings:
+  auto_retry: true
+  error_notification: true
+triggers:
+- id: dc_1gu3ZaJ
+steps:
+- namespace: telegram_bot_api
+  runtime: nodejs18.x
+  uses: "./telegram_bot_api/entry.js"
+  props:
+    telegram_bot_api:
+      authProvisionId: apn_vMhDnXw
+    twitter:
+      authProvisionId: apn_XehmYa1
+    command: "/report"
+
