@@ -10,7 +10,7 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
-const tgToken string = "6626616536:AAFP21dn2GXQktjlwHki7z71-ax6i3AkUbo"
+const tgToken string = ""
 
 const (
 	ConsumerKey       = "YOUR_CONSUMER_KEY"
